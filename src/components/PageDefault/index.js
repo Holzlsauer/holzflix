@@ -29,12 +29,12 @@ function PageDefault({ children, paddingAll }) {
 }
 
 PageDefault.defaultProps = {
-  paddingAll: '0',
+  paddingAll: 0,
 };
 
 PageDefault.propTypes = {
   children: PropTypes.node.isRequired,
-  paddingAll: PropTypes.string,
+  paddingAll: PropTypes.number,
 };
 
 export default PageDefault;
