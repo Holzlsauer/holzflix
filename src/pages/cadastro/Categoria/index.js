@@ -3,30 +3,18 @@ import { Link } from 'react-router-dom';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
+import useForm from '../../../hooks/useForm';
 
 function CadastroCategoria() {
   const initialValues = {
-    nome: '',
+    titulo: '',
     descricao: '',
     cor: '',
   };
+
+  const { values, handleChange, clearForm } = useForm(initialValues);
+
   const [categorias, setCategorias] = useState([]);
-  const [values, setValues] = useState(initialValues);
-
-  function setValue(key, value) {
-    // key: nome, descricao, cor
-    setValues({
-      ...values,
-      [key]: value,
-    });
-  }
-
-  function handleChange(inputValue) {
-    setValue(
-      inputValue.target.getAttribute('name'),
-      inputValue.target.value,
-    );
-  }
 
   useEffect(() => {
     const URL = window.location.hostname.includes('localhost')
@@ -44,7 +32,8 @@ function CadastroCategoria() {
     <PageDefault>
       <h1>
         Cadastro de Categoria:
-        {values.nome}
+        {' ' /* Blank space between values.title and 'Categoria' */}
+        {values.titulo}
       </h1>
 
       <form onSubmit={function handleSubmit(infosDoEvento) {
@@ -54,20 +43,20 @@ function CadastroCategoria() {
           values,
         ]);
 
-        setValues(initialValues);
+        clearForm(initialValues);
       }}
       >
 
         <FormField
-          label="Nome da Categoria:"
+          label="Nome da Categoria: "
           type="text"
-          name="nome"
-          value={values.nome}
+          name="titulo"
+          value={values.titulo}
           onChange={handleChange}
         />
 
         <FormField
-          label="Descrição:"
+          label="Descrição: "
           type="textarea"
           name="descricao"
           value={values.descricao}
@@ -75,7 +64,7 @@ function CadastroCategoria() {
         />
 
         <FormField
-          label="Cor:"
+          label="Cor: "
           type="color"
           name="cor"
           value={values.cor}
@@ -95,8 +84,8 @@ function CadastroCategoria() {
 
       <ul>
         {categorias.map((categoria) => (
-          <li key={`${categoria.nome}`}>
-            {categoria.nome}
+          <li key={`${categoria.titulo}`}>
+            {categoria.titulo}
           </li>
         ))}
       </ul>
