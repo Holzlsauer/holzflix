@@ -11,7 +11,7 @@ const Main = styled.main`
   padding-top: 50px;
   padding-left: 5%;
   padding-right: 5%;
-  ${({ paddingAll }) => css`
+  ${({ paddingAll }) => paddingAll > -1 && css`
     padding: ${paddingAll}
   `}
 `;
@@ -29,7 +29,7 @@ function PageDefault({ children, paddingAll }) {
 }
 
 PageDefault.defaultProps = {
-  paddingAll: 0,
+  paddingAll: -1,
 };
 
 PageDefault.propTypes = {
