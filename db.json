@@ -198,6 +198,18 @@
       "titulo": "React com CMS via Google Spreadsheets e Nextjs | Top Jogos favoritos DevSoutinho",
       "url": "https://www.youtube.com/watch?v=5t2gq3xJZ9o",
       "id": 26
+    },
+    {
+      "categoriaId": 3,
+      "titulo": "Corrida de CASOS de COVID no Brasil | Gráfico de Corrida de Barras (Bar Chart Race) | Dica Pandas #7",
+      "url": "https://www.youtube.com/watch?v=rIwxjCnvdcY",
+      "id": 27
+    },
+    {
+      "categoriaId": 1,
+      "titulo": "Speedrun: Do Zero ao React | Como fazer um React e aprender a ideia do Virtual DOM na prática",
+      "url": "https://www.youtube.com/watch?v=5MzOCxSWrrc",
+      "id": 28
     }
   ]
 }

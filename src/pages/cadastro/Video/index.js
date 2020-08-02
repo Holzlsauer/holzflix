@@ -9,8 +9,9 @@ import categoriasRepository from '../../../repositories/categorias';
 
 function CadastroVideo() {
   const history = useHistory();
-  const [categorias, setCategorias] = useState([]);
   const { handleChange, values } = useForm({});
+  const [categorias, setCategorias] = useState([]);
+  const categoryTitles = categorias.map(({ titulo }) => titulo);
 
   useEffect(() => {
     categoriasRepository
@@ -27,9 +28,9 @@ function CadastroVideo() {
       <form onSubmit={(event) => {
         event.preventDefault();
 
-        const categoriaEscolhida = categorias.find((categoria) => {
-          return categoria.titulo === values.categoria;
-        });
+        const categoriaEscolhida = categorias.find((categoria) => (
+          categoria.titulo === values.categoria
+        ));
 
         videosRepository.create({
           categoriaId: categoriaEscolhida.id,
@@ -43,7 +44,6 @@ function CadastroVideo() {
       >
         <FormField
           label="Título do Vídeo: "
-          type="text"
           name="titulo"
           value={values.titulo}
           onChange={handleChange}
@@ -51,17 +51,17 @@ function CadastroVideo() {
 
         <FormField
           label="URL: "
-          type="text"
           name="url"
           value={values.url}
           onChange={handleChange}
         />
+
         <FormField
-          label="Categoria: "
-          type="text"
+          label="Categoria"
           name="categoria"
           value={values.categoria}
           onChange={handleChange}
+          suggestions={categoryTitles}
         />
 
         <Button type="submit">
