@@ -4,28 +4,18 @@ import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 import useForm from '../../../hooks/useForm';
+import categoriasRepository from '../../../repositories/categorias';
 
 function CadastroCategoria() {
-  const initialValues = {
-    titulo: '',
-    descricao: '',
-    cor: '',
-  };
-
-  const { values, handleChange, clearForm } = useForm(initialValues);
-
+  const { values, handleChange, clearForm } = useForm({});
   const [categorias, setCategorias] = useState([]);
 
   useEffect(() => {
-    const URL = window.location.hostname.includes('localhost')
-      ? 'http://localhost:8080/categorias'
-      : 'https://holzflix.herokuapp.com/categorias';
-    fetch(URL).then(async (respostaServidor) => {
-      const resposta = await respostaServidor.json();
-      setCategorias([
-        ...resposta,
-      ]);
-    });
+    categoriasRepository
+      .getAll()
+      .then((categoriesFromServer) => {
+        setCategorias(categoriesFromServer);
+      });
   }, []);
 
   return (
@@ -36,14 +26,20 @@ function CadastroCategoria() {
         {values.titulo}
       </h1>
 
-      <form onSubmit={function handleSubmit(infosDoEvento) {
-        infosDoEvento.preventDefault();
+      <form onSubmit={(event) => {
+        event.preventDefault();
+
+        categoriasRepository.create({
+          titulo: values.titulo,
+          cor: values.cor,
+        });
+
         setCategorias([
           ...categorias,
           values,
         ]);
 
-        clearForm(initialValues);
+        clearForm({});
       }}
       >
 
