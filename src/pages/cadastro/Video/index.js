@@ -32,14 +32,17 @@ function CadastroVideo() {
           categoria.titulo === values.categoria
         ));
 
-        videosRepository.create({
-          categoriaId: categoriaEscolhida.id,
-          titulo: values.titulo,
-          url: values.url,
-        })
-          .then(() => {
-            history.push('/');
-          });
+        // eslint-disable-next-line no-unused-expressions
+        !categoriaEscolhida ? alert('Invalid category') : (
+          videosRepository.create({
+            categoriaId: categoriaEscolhida.id,
+            titulo: values.titulo,
+            url: values.url,
+          })
+            .then(() => {
+              history.push('/');
+            })
+        );
       }}
       >
         <FormField
