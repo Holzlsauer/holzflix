@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 
 const Button = styled.button`
     color: var(--white);
@@ -15,6 +15,10 @@ const Button = styled.button`
     text-decoration: none;
     display: inline-block;
     transition: opacity .3s;
+
+    ${({ wide }) => wide && css`
+      width:100%
+    `};
 
     &:hover,
     &:focus {

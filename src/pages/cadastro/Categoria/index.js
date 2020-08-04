@@ -86,9 +86,14 @@ function CadastroCategoria() {
         ))}
       </ul>
 
-      <Link to="/">
+      <Button
+        as={Link}
+        to="/"
+        wide
+        style={{ marginBottom: 10, textAlign: 'center' }}
+      >
         Ir para home
-      </Link>
+      </Button>
     </PageDefault>
   );
 }

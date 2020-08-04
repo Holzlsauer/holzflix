@@ -67,14 +67,19 @@ function CadastroVideo() {
           suggestions={categoryTitles}
         />
 
-        <Button type="submit">
+        <Button type="submit" wide>
           Cadastrar
         </Button>
       </form>
 
-      <Link to="/cadastro/categoria">
+      <Button
+        as={Link}
+        to="/cadastro/categoria"
+        wide
+        style={{ marginBlock: 10, textAlign: 'center' }}
+      >
         Cadastrar Categoria
-      </Link>
+      </Button>
     </PageDefault>
   );
 }
