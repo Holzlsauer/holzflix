@@ -21,6 +21,26 @@ function CadastroVideo() {
       });
   }, []);
 
+  function validate(categoriaEscolhida) {
+    // eslint-disable-next-line no-useless-escape
+    const youtubeRegex = '^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$';
+    const errors = {};
+
+    if (!values.url || !values.url.match(youtubeRegex)) {
+      errors.url = 'URL inválida';
+    }
+
+    if (!values.titulo) {
+      errors.titulo = 'Título inválido';
+    }
+
+    if (!values.categoria || !categoriaEscolhida) {
+      errors.categoria = 'Categoria inválida';
+    }
+
+    return !Object.keys(errors).length; // Verifica se o objeto está vazio
+  }
+
   return (
     <PageDefault>
       <h1>Cadastro de Vídeo</h1>
@@ -32,8 +52,7 @@ function CadastroVideo() {
           categoria.titulo === values.categoria
         ));
 
-        // eslint-disable-next-line no-unused-expressions
-        !categoriaEscolhida ? alert('Invalid category') : (
+        if (validate(categoriaEscolhida)) {
           videosRepository.create({
             categoriaId: categoriaEscolhida.id,
             titulo: values.titulo,
@@ -41,8 +60,8 @@ function CadastroVideo() {
           })
             .then(() => {
               history.push('/');
-            })
-        );
+            });
+        }
       }}
       >
         <FormField

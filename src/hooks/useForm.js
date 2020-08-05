@@ -3,19 +3,13 @@ import { useState } from 'react';
 function useForm(initialValues) {
   const [values, setValues] = useState(initialValues);
 
-  function setValue(key, value) {
-    // key: nome, descricao, cor
+  function handleChange(inputValue) {
+    const fieldName = inputValue.target.getAttribute('name');
+    const { value } = inputValue.target;
     setValues({
       ...values,
-      [key]: value,
+      [fieldName]: value,
     });
-  }
-
-  function handleChange(inputValue) {
-    setValue(
-      inputValue.target.getAttribute('name'),
-      inputValue.target.value,
-    );
   }
 
   function clearForm() {

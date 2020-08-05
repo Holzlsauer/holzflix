@@ -50,19 +50,11 @@ function Carousel({
 
 Carousel.defaultProps = {
   ignoreFirstVideo: false,
-  link_extra: {},
-  url: null,
-  text: null,
 };
 
 Carousel.propTypes = {
   ignoreFirstVideo: PropTypes.bool,
   category: PropTypes.node.isRequired,
-  titulo: PropTypes.string.isRequired,
-  cor: PropTypes.string.isRequired,
-  link_extra: PropTypes.node,
-  url: PropTypes.string,
-  text: PropTypes.string,
 };
 
 export default Carousel;

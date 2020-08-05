@@ -18,6 +18,20 @@ function CadastroCategoria() {
       });
   }, []);
 
+  function validate() {
+    const errors = {};
+
+    if (!values.titulo) {
+      errors.titulo = 'Campo título inválido';
+    }
+
+    if (!values.cor) {
+      errors.cor = 'Campo cor inválido';
+    }
+
+    return !Object.keys(errors).length; // Verifica se o objeto está vazio
+  }
+
   return (
     <PageDefault>
       <h1>
@@ -29,17 +43,19 @@ function CadastroCategoria() {
       <form onSubmit={(event) => {
         event.preventDefault();
 
-        categoriasRepository.create({
-          titulo: values.titulo,
-          cor: values.cor,
-        });
+        if (validate()) {
+          categoriasRepository.create({
+            titulo: values.titulo,
+            cor: values.cor,
+          });
 
-        setCategorias([
-          ...categorias,
-          values,
-        ]);
+          setCategorias([
+            ...categorias,
+            values,
+          ]);
 
-        clearForm({});
+          clearForm({});
+        }
       }}
       >
 
@@ -89,7 +105,7 @@ function CadastroCategoria() {
       <Button
         as={Link}
         to="/"
-        wide
+        wide="true"
         style={{ marginBottom: 10, textAlign: 'center' }}
       >
         Ir para home
