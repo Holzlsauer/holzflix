@@ -9,6 +9,7 @@ const Main = styled.main`
   color: var(--white);
   flex: 1;
   padding-top: 50px;
+  padding-bottom: 10px;
   padding-left: 5%;
   padding-right: 5%;
   ${({ paddingAll }) => paddingAll > -1 && css`
@@ -16,10 +17,10 @@ const Main = styled.main`
   `}
 `;
 
-function PageDefault({ children, paddingAll }) {
+function PageDefault({ children, paddingAll, menuButton }) {
   return (
     <>
-      <Menu />
+      <Menu menuButton={menuButton} />
       <Main paddingAll={paddingAll}>
         {children}
       </Main>
@@ -30,11 +31,16 @@ function PageDefault({ children, paddingAll }) {
 
 PageDefault.defaultProps = {
   paddingAll: -1,
+  menuButton: {
+    text: 'Novo vídeo',
+    path: '/cadastro/video',
+  },
 };
 
 PageDefault.propTypes = {
   children: PropTypes.node.isRequired,
   paddingAll: PropTypes.number,
+  menuButton: PropTypes.node,
 };
 
 export default PageDefault;

@@ -1,10 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import styled from 'styled-components';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
 import Button from '../../../components/Button';
 import useForm from '../../../hooks/useForm';
 import categoriasRepository from '../../../repositories/categorias';
+
+const ButtonWrapper = styled.div`
+  display: flex;
+  width: 230px;
+  flex-direction: row;
+  justify-content: space-between;
+`;
 
 function CadastroCategoria() {
   const { values, handleChange, clearForm } = useForm({});
@@ -83,9 +91,14 @@ function CadastroCategoria() {
           onChange={handleChange}
         />
 
-        <Button>
-          Cadastrar
-        </Button>
+        <ButtonWrapper>
+          <Button type="submit">
+            Cadastrar
+          </Button>
+          <Button onClick={clearForm}>
+            Limpar
+          </Button>
+        </ButtonWrapper>
       </form>
 
       {categorias.length === 0 && (
@@ -102,12 +115,7 @@ function CadastroCategoria() {
         ))}
       </ul>
 
-      <Button
-        as={Link}
-        to="/"
-        wide="true"
-        style={{ marginBottom: 10, textAlign: 'center' }}
-      >
+      <Button as={Link} to="/">
         Ir para home
       </Button>
     </PageDefault>

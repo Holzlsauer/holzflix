@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import styled from 'styled-components';
 import useForm from '../../../hooks/useForm';
 import FormField from '../../../components/FormField';
 import PageDefault from '../../../components/PageDefault';
@@ -7,11 +8,22 @@ import Button from '../../../components/Button';
 import videosRepository from '../../../repositories/videos';
 import categoriasRepository from '../../../repositories/categorias';
 
+const FormWrapper = styled.div`
+  display: flex;
+  width: 230px;
+  flex-direction: row;
+  justify-content: space-between;
+`;
+
 function CadastroVideo() {
   const history = useHistory();
-  const { handleChange, values } = useForm({});
+  const { handleChange, values, clearForm } = useForm({});
   const [categorias, setCategorias] = useState([]);
   const categoryTitles = categorias.map(({ titulo }) => titulo);
+  const menuButton = {
+    text: 'Nova categoria',
+    path: '/cadastro/categoria',
+  };
 
   useEffect(() => {
     categoriasRepository
@@ -21,7 +33,7 @@ function CadastroVideo() {
       });
   }, []);
 
-  function validate(categoriaEscolhida) {
+  function validateForm(categoriaEscolhida) {
     // eslint-disable-next-line no-useless-escape
     const youtubeRegex = '^(https?\:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$';
     const errors = {};
@@ -42,7 +54,7 @@ function CadastroVideo() {
   }
 
   return (
-    <PageDefault>
+    <PageDefault menuButton={menuButton}>
       <h1>Cadastro de Vídeo</h1>
 
       <form onSubmit={(event) => {
@@ -52,7 +64,7 @@ function CadastroVideo() {
           categoria.titulo === values.categoria
         ));
 
-        if (validate(categoriaEscolhida)) {
+        if (validateForm(categoriaEscolhida)) {
           videosRepository.create({
             categoriaId: categoriaEscolhida.id,
             titulo: values.titulo,
@@ -86,19 +98,15 @@ function CadastroVideo() {
           suggestions={categoryTitles}
         />
 
-        <Button type="submit" wide>
-          Cadastrar
-        </Button>
+        <FormWrapper>
+          <Button type="submit">
+            Cadastrar
+          </Button>
+          <Button onClick={clearForm}>
+            Limpar
+          </Button>
+        </FormWrapper>
       </form>
-
-      <Button
-        as={Link}
-        to="/cadastro/categoria"
-        wide
-        style={{ marginBlock: 10, textAlign: 'center' }}
-      >
-        Cadastrar Categoria
-      </Button>
     </PageDefault>
   );
 }
