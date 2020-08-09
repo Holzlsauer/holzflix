@@ -24,11 +24,6 @@
       "titulo": "Artificial Intelligence-ish",
       "cor": "#f477d5",
       "id": 5
-    },
-    {
-      "titulo": "#LifeTips",
-      "cor": "#C3681E",
-      "id": 6
     }
   ],
   "videos": [
@@ -205,6 +200,18 @@
       "titulo": "The Espresso Guide For Beginners",
       "url": "https://www.youtube.com/watch?v=ZuQu12vMQZM",
       "id": 29
+    },
+    {
+      "categoriaId": 3,
+      "titulo": "Validações",
+      "url": "https://www.youtube.com/watch?v=-nYNd6EuZHU",
+      "id": 30
+    },
+    {
+      "categoriaId": 3,
+      "titulo": "Lazy Load de Imagens + Animação no Scroll | Performance e efeito com CSS",
+      "url": "https://www.youtube.com/watch?v=ql0-0_taZpk",
+      "id": 31
     }
   ]
 }
