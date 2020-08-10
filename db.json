@@ -3,25 +3,30 @@
     {
       "id": 1,
       "titulo": "Behind-ish the code",
+      "descricao": "Tópicos não técnicos sobre TI, ou não",
       "cor": "#ff3a1a"
     },
     {
       "titulo": "Coffee",
+      "descricao": "Combustível de código",
       "cor": "#451700",
       "id": 2
     },
     {
       "titulo": "Frontendão",
+      "descricao": "Aquele Front End da galera",
       "cor": "#3823e0",
       "id": 3
     },
     {
       "titulo": "Artificial Intelligence",
+      "descricao": "Vídeos relacionados a AI",
       "cor": "#6bd1ff",
       "id": 4
     },
     {
       "titulo": "Artificial Intelligence-ish",
+      "descricao": "Playlist destinada a vídeos relacionados a emprego de AIs, com um toque de humor",
       "cor": "#f477d5",
       "id": 5
     }
@@ -203,15 +208,9 @@
     },
     {
       "categoriaId": 3,
-      "titulo": "Validações",
-      "url": "https://www.youtube.com/watch?v=-nYNd6EuZHU",
-      "id": 30
-    },
-    {
-      "categoriaId": 3,
       "titulo": "Lazy Load de Imagens + Animação no Scroll | Performance e efeito com CSS",
       "url": "https://www.youtube.com/watch?v=ql0-0_taZpk",
-      "id": 31
+      "id": 30
     }
   ]
 }

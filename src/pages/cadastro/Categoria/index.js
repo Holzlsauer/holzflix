@@ -1,22 +1,19 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import styled from 'styled-components';
 import PageDefault from '../../../components/PageDefault';
 import FormField from '../../../components/FormField';
+import FormButtonWrapper from '../../../components/FormButtonWrapper';
 import Button from '../../../components/Button';
+import Table from '../../../components/Table';
 import useForm from '../../../hooks/useForm';
 import categoriasRepository from '../../../repositories/categorias';
-
-const ButtonWrapper = styled.div`
-  display: flex;
-  width: 230px;
-  flex-direction: row;
-  justify-content: space-between;
-`;
 
 function CadastroCategoria() {
   const { values, handleChange, clearForm } = useForm({});
   const [categorias, setCategorias] = useState([]);
+  const head = {
+    titulo: 'Nome',
+    descricao: 'Descrição',
+  };
 
   useEffect(() => {
     categoriasRepository
@@ -31,6 +28,10 @@ function CadastroCategoria() {
 
     if (!values.titulo) {
       errors.titulo = 'Campo título inválido';
+    }
+
+    if (!values.descricao) {
+      errors.descricao = 'Campo descrição inválido';
     }
 
     if (!values.cor) {
@@ -54,6 +55,7 @@ function CadastroCategoria() {
         if (validate()) {
           categoriasRepository.create({
             titulo: values.titulo,
+            descricao: values.descricao,
             cor: values.cor,
           });
 
@@ -91,14 +93,14 @@ function CadastroCategoria() {
           onChange={handleChange}
         />
 
-        <ButtonWrapper>
+        <FormButtonWrapper>
           <Button type="submit">
             Cadastrar
           </Button>
           <Button onClick={clearForm}>
             Limpar
           </Button>
-        </ButtonWrapper>
+        </FormButtonWrapper>
       </form>
 
       {categorias.length === 0 && (
@@ -107,17 +109,7 @@ function CadastroCategoria() {
         </div>
       )}
 
-      <ul>
-        {categorias.map((categoria) => (
-          <li key={`${categoria.titulo}`}>
-            {categoria.titulo}
-          </li>
-        ))}
-      </ul>
-
-      <Button as={Link} to="/">
-        Ir para home
-      </Button>
+      <Table data={categorias} head={head} />
     </PageDefault>
   );
 }

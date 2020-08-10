@@ -1,19 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import styled from 'styled-components';
 import useForm from '../../../hooks/useForm';
 import FormField from '../../../components/FormField';
 import PageDefault from '../../../components/PageDefault';
 import Button from '../../../components/Button';
+import FormButtonWrapper from '../../../components/FormButtonWrapper';
 import videosRepository from '../../../repositories/videos';
 import categoriasRepository from '../../../repositories/categorias';
-
-const FormWrapper = styled.div`
-  display: flex;
-  width: 230px;
-  flex-direction: row;
-  justify-content: space-between;
-`;
 
 function CadastroVideo() {
   const history = useHistory();
@@ -98,14 +91,14 @@ function CadastroVideo() {
           suggestions={categoryTitles}
         />
 
-        <FormWrapper>
+        <FormButtonWrapper>
           <Button type="submit">
             Cadastrar
           </Button>
           <Button onClick={clearForm}>
             Limpar
           </Button>
-        </FormWrapper>
+        </FormButtonWrapper>
       </form>
     </PageDefault>
   );
